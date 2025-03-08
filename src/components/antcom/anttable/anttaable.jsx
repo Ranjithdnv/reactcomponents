@@ -51,8 +51,8 @@ const DynamicTable = forwardRef(
 
               // Define a minimum and maximum width range
 
-              const minWidth = 100;
-              const maxWidth = 400;
+              const minWidth = 150;
+              // const maxWidth = 400;
               const width = Math.min(
                 Math.max(maxContentLength * 8, minWidth),
                 maxWidth

@@ -2,7 +2,7 @@ import React from "react";
 
 const Glass = () => {
   return (
-    <div className="w-full  flex justify-center bg-blue-700 ">
+    <div className="w-full  flex justify-center dark:bg-red-400 ">
       <div className=" w-60 ">
         {" "}
         <div className="relative  h-fit  w-fit flex -skew-x-6 items-center justify-center  m-2">
