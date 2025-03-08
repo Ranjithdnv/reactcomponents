@@ -156,6 +156,7 @@ function App() {
             <Routes>
               {/* Protected Routes (Require Authentication) */}
               <Route
+                path="/"
                 element={
                   <RequireAuth>
                     {" "}
