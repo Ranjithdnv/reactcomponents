@@ -1,0 +1,66 @@
+/* From Uiverse.io by BishalSaini */
+.customtooltipcontainer {
+  position: relative;
+  display: inline-block;
+}
+
+.customtooltipbtn {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
+}
+
+.customtooltipbtn:hover {
+  background-color: #0056b3;
+}
+
+.customtooltipcontent {
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  width: 240px;
+  background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  border-radius: 15px;
+  transition: all 0.6s ease;
+  z-index: 1;
+  box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.3);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+}
+
+.customtooltipcontainer:hover .customtooltipcontent {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.customtooltiparrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #007bff;
+}
+
+.customtooltiptext {
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}

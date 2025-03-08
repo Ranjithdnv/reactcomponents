@@ -1,0 +1,8 @@
+.custom-react-select .react-select__menu-list {
+    scrollbar-width: none; /* For Firefox */
+  }
+  
+  .custom-react-select .react-select__menu-list::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+  

@@ -1,0 +1,25 @@
+.groupcls {
+  display: flex;
+  line-height: 30px;
+  align-items: center;
+  position: relative;
+  min-width: 19rem;
+  /* max-width: 200px; */
+}
+.mychange {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1rem;
+  max-width: 80% !important;
+  min-width: 17rem !important;
+  text-wrap: wrap;
+}
+.mychange1 {
+  padding-left: 1rem;
+  min-width: 17rem !important;
+}
+.mychange2 {
+  min-width: 15rem !important;
+  max-width: 8rem;
+}

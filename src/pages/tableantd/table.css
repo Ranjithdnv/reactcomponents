@@ -1,0 +1,5 @@
+.ant-table-thead > tr > th {
+  background-color: #cff9cb !important; /* Blue */
+  color: white !important;
+  text-align: center;
+}

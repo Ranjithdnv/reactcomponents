@@ -1,0 +1,7 @@
+.card13-width {
+  max-width: max(20rem, 100%) !important;
+  height: 18rem;
+}
+.card13-height {
+  max-height: fit-content !important;
+}
