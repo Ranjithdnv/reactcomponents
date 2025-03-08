@@ -213,15 +213,6 @@ const PDFGenerator = ({
             <div className="apptable-container">
               <Apptable />
             </div>
-            <div className="apptable-container">
-              <Apptable />
-            </div>
-            <div className="apptable-container">
-              <Apptable />
-            </div>
-            <div className="apptable-container">
-              <Apptable />
-            </div>
           </div>
         </div>
       ))}

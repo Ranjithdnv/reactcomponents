@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 const Voicechild = () => {
   const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState(null);
-  const [speakInterval, setSpeakInterval] = useState(false); // State to trigger repeated speech
 
   useEffect(() => {
     const loadVoices = () => {
@@ -12,7 +11,6 @@ const Voicechild = () => {
         if (availableVoices.length) {
           resolve(availableVoices);
         } else {
-          // If voices are not available immediately, listen for 'voiceschanged'
           window.speechSynthesis.onvoiceschanged = () => {
             availableVoices = window.speechSynthesis.getVoices();
             resolve(availableVoices);
@@ -25,29 +23,16 @@ const Voicechild = () => {
       const availableVoices = await loadVoices();
       setVoices(availableVoices);
 
-      // Automatically select the first voice if available
       if (availableVoices.length > 0) {
         setSelectedVoice(availableVoices[0].name);
       }
 
-      // Start the interval for repeated speech
-      setSpeakInterval(true);
+      // Speak only once after voices are loaded
+      speak("Hi Ranjith, how are you?");
     };
 
     initializeVoices();
   }, []);
-
-  useEffect(() => {
-    if (speakInterval) {
-      const interval = setInterval(() => {
-        console.log(0);
-        setSpeakInterval(true);
-        speak("hi"); // Speak every 4 seconds
-      }, 4000);
-
-      return () => clearInterval(interval); // Clean up interval on unmount
-    }
-  }, [speakInterval, voices, selectedVoice]); // Ensure it re-runs when voices or selectedVoice changes
 
   const speak = (text) => {
     if (!("speechSynthesis" in window)) {
@@ -56,12 +41,11 @@ const Voicechild = () => {
     }
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US"; // Set language to English
+    utterance.lang = "en-US";
     utterance.pitch = 1;
     utterance.rate = 1;
     utterance.volume = 1;
 
-    // Set the selected voice
     const voice = voices.find((v) => v.name === selectedVoice);
     if (voice) {
       utterance.voice = voice;
@@ -72,9 +56,7 @@ const Voicechild = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">
-        Text to Speech (Auto-Speak "hi" Every 4 Seconds)
-      </h1>
+      <h1 className="text-2xl font-bold mb-4">Text to Speech (Speaks Once)</h1>
     </div>
   );
 };
