@@ -49,7 +49,7 @@ const DynamicTable = forwardRef(
                 ),
                 dataIndex: key,
                 onCell: () => ({
-                  style: { minWidth: 100 },
+                  style: { minWidth: 60 },
                 }),
                 key,
                 render:
