@@ -112,9 +112,11 @@ function App() {
   console.log(internetConnection);
   return (
     <>
-      {/* <Toothpick4></Toothpick4>
+      <Toothpick4></Toothpick4>
+      <PdfParent></PdfParent>
+      {/*
       <Tooltip5></Tooltip5> */}
-      {/* <PdfParent></PdfParent>
+      {/* 
       <Checkant></Checkant> */}
       <FormAntParent></FormAntParent>
       {/* <SampleTable></SampleTable> */}
@@ -127,7 +129,7 @@ function App() {
       {/* <Datecros></Datecros> */}
       <div className="flex flex-col justify-center  items-center gap-10 ">
         {/* <Apptable></Apptable> */}
-        {/* <TextToSpeech></TextToSpeech> */}
+        <TextToSpeech></TextToSpeech>
         {/* <UserForm></UserForm> */}
         {/* <CustomModal></CustomModal> */}
         <Grid></Grid>
