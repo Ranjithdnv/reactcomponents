@@ -3,57 +3,42 @@ import React, { useEffect, useState } from "react";
 const Voicechild = () => {
   const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState(null);
+  const [hasSpoken, setHasSpoken] = useState(false); // Prevent multiple speeches
 
   useEffect(() => {
-    const loadVoices = () => {
-      return new Promise((resolve) => {
-        let availableVoices = window.speechSynthesis.getVoices();
-        if (availableVoices.length) {
-          resolve(availableVoices);
-        } else {
-          const voiceHandler = () => {
-            availableVoices = window.speechSynthesis.getVoices();
-            window.speechSynthesis.onvoiceschanged = null; // Remove event listener
-            resolve(availableVoices);
-          };
-
-          window.speechSynthesis.onvoiceschanged = voiceHandler;
-
-          // Fallback: Retry loading voices every 500ms until found
-          const interval = setInterval(() => {
-            availableVoices = window.speechSynthesis.getVoices();
-            if (availableVoices.length) {
-              clearInterval(interval);
-              resolve(availableVoices);
-            }
-          }, 500);
-
-          // Timeout after 5 seconds if no voices found
-          setTimeout(() => {
-            clearInterval(interval);
-            resolve(window.speechSynthesis.getVoices());
-          }, 5000);
-        }
-      });
+    const updateVoices = () => {
+      const availableVoices = window.speechSynthesis.getVoices();
+      if (availableVoices.length > 0) {
+        setVoices(availableVoices);
+        setSelectedVoice(availableVoices[0]); // Set first available voice
+      }
     };
 
-    const initializeVoices = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500)); // Ensure voices are available
-      const availableVoices = await loadVoices();
-      setVoices(availableVoices);
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = updateVoices;
+    }
+
+    // Ensure voices load after full page load
+    window.onload = () => {
+      updateVoices();
     };
 
-    initializeVoices();
+    // Extra fallback in case voices take time to load
+    setTimeout(() => {
+      if (voices.length === 0) {
+        updateVoices();
+      }
+    }, 1000);
   }, []);
 
   useEffect(() => {
-    if (voices.length > 0) {
-      setSelectedVoice(voices[0].name);
-      speak("Hi Ranjith, how are you?", voices[0]);
+    if (!hasSpoken && voices.length > 0 && selectedVoice) {
+      setHasSpoken(true); // Ensure it speaks only once
+      speak("Hi Ranjith, how are you?");
     }
-  }, [voices]); // Speak only after voices are fully loaded
+  }, [voices, selectedVoice, hasSpoken]);
 
-  const speak = (text, voice = null) => {
+  const speak = (text) => {
     if (!("speechSynthesis" in window)) {
       console.error("Web Speech API is not supported by this browser.");
       return;
@@ -65,9 +50,8 @@ const Voicechild = () => {
     utterance.rate = 1;
     utterance.volume = 1;
 
-    const chosenVoice = voice || voices.find((v) => v.name === selectedVoice);
-    if (chosenVoice) {
-      utterance.voice = chosenVoice;
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
     }
 
     window.speechSynthesis.speak(utterance);
@@ -75,7 +59,9 @@ const Voicechild = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Text to Speech (Speaks Once)</h1>
+      <h1 className="text-2xl font-bold mb-4">
+        Text to Speech (Speaks Once on Load)
+      </h1>
     </div>
   );
 };
