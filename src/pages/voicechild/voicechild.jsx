@@ -13,35 +13,45 @@ const Voicechild = () => {
         } else {
           const voiceHandler = () => {
             availableVoices = window.speechSynthesis.getVoices();
-            window.speechSynthesis.onvoiceschanged = null; // Remove event listener after execution
+            window.speechSynthesis.onvoiceschanged = null; // Remove event listener
             resolve(availableVoices);
           };
 
           window.speechSynthesis.onvoiceschanged = voiceHandler;
 
-          // Fallback: Load voices manually after a short delay
-          setTimeout(() => {
-            if (!availableVoices.length) {
-              availableVoices = window.speechSynthesis.getVoices();
+          // Fallback: Retry loading voices every 500ms until found
+          const interval = setInterval(() => {
+            availableVoices = window.speechSynthesis.getVoices();
+            if (availableVoices.length) {
+              clearInterval(interval);
               resolve(availableVoices);
             }
           }, 500);
+
+          // Timeout after 5 seconds if no voices found
+          setTimeout(() => {
+            clearInterval(interval);
+            resolve(window.speechSynthesis.getVoices());
+          }, 5000);
         }
       });
     };
 
     const initializeVoices = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Ensure voices are available
       const availableVoices = await loadVoices();
       setVoices(availableVoices);
-
-      if (availableVoices.length > 0) {
-        setSelectedVoice(availableVoices[0].name);
-        speak("Hi Ranjith, how are you?", availableVoices[0]);
-      }
     };
 
     initializeVoices();
   }, []);
+
+  useEffect(() => {
+    if (voices.length > 0) {
+      setSelectedVoice(voices[0].name);
+      speak("Hi Ranjith, how are you?", voices[0]);
+    }
+  }, [voices]); // Speak only after voices are fully loaded
 
   const speak = (text, voice = null) => {
     if (!("speechSynthesis" in window)) {
