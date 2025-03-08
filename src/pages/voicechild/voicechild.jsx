@@ -44,7 +44,7 @@ const Voicechild = () => {
         speak("hi ranjith how r u doing"); // Speak every 4 seconds
 
         setSpeakInterval(false);
-      }, 4000);
+      }, 500);
 
       return () => clearInterval(interval); // Clean up interval on unmount
     }
