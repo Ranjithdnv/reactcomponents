@@ -10,6 +10,8 @@ import { Table, Tag, Input, Button } from "antd";
 const DynamicTable = forwardRef(
   (
     {
+      showQuickJumper,
+      scroll,
       fetchDataFunction,
       columnRenderers = {},
       rowKey = "id",
@@ -41,30 +43,17 @@ const DynamicTable = forwardRef(
           // ✅ Generate columns dynamically with custom renderers
           if (result.length > 0) {
             const generatedColumns = Object.keys(result[0]).map((key) => {
-              // Find the maximum length of values in this column
-              const maxContentLength = Math.max(
-                key.length,
-                ...result.map((row) =>
-                  row[key] ? row[key].toString().length : 0
-                )
-              );
-
-              // Define a minimum and maximum width range
-
-              const minWidth = 150;
-              // const maxWidth = 400;
-              const width = Math.min(
-                Math.max(maxContentLength * 8, minWidth),
-                maxWidth
-              );
-
               return {
-                title: key.toUpperCase(),
+                title: (
+                  <span className=" text-ellipsis">{key.toUpperCase()}</span>
+                ),
                 dataIndex: key,
+                onCell: () => ({
+                  style: { minWidth: 100 },
+                }),
                 key,
-                width, // ✅ Correctly using the calculated width
                 render:
-                  columnRenderers[key] || ((value) => formatCellValue(value)), // ✅ Use custom renderer or default formatting
+                  columnRenderers[key] || ((value) => formatCellValue(value)),
               };
             });
 
@@ -155,7 +144,15 @@ const DynamicTable = forwardRef(
           columns={columns}
           dataSource={filteredData}
           loading={loading}
-          pagination={pagination}
+          pagination={{
+            showSizeChanger: false, // ❌ Disable page size change
+            showQuickJumper: showQuickJumper, // ✅ "Jump to Page" always stays on the right
+            current: pagination.current,
+            pageSize: pagination.pageSize,
+            total: pagination.total, // ✅ Show total number of records
+            showTotal: (total, range) =>
+              `Showing ${range[0]}-${range[1]} of ${total} records`, // ✅ Correct range display
+          }}
           onChange={(pagination) =>
             fetchData(pagination.current, pagination.pageSize)
           }
@@ -163,7 +160,7 @@ const DynamicTable = forwardRef(
           rowClassName={(record, index) =>
             index % 2 === 0 ? "bg-gray-100" : "bg-white"
           }
-          scroll={{ y: 500 }}
+          scroll={{ y: scroll }}
         />
       </div>
     );
