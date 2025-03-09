@@ -1,5 +1,16 @@
 import React, { Children, useEffect, useState } from "react";
-import { Form, Input, Button, Select, Tooltip, DatePicker, Modal } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Select,
+  Tooltip,
+  Checkbox,
+  DatePicker,
+  Radio,
+  Modal,
+  message,
+} from "antd";
 import { DownOutlined } from "@ant-design/icons"; // Import an icon
 
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
@@ -20,6 +31,8 @@ const DynamicForm = ({
   setOpenFormModal,
 }) => {
   const [form] = Form.useForm();
+
+  const childrenArray = React.Children.toArray(children);
 
   useEffect(() => {
     form.setFieldsValue(initialValues);
@@ -99,6 +112,89 @@ const DynamicForm = ({
             />
           </Form.Item>
         );
+
+      case "checkbox":
+        return (
+          <Form.Item
+            key={name}
+            label={labelStyle(label)}
+            name={fullName} // ✅ Ensure this matches your form structure
+            valuePropName="checked"
+            rules={[
+              ...(rules || []),
+              // {
+              //   validator: (_, value) =>
+              //     value
+              //       ? Promise.resolve()
+              //       : Promise.reject(new Error("You must accept the terms!")),
+              // },
+            ]}
+            validateTrigger="onChange" // ✅ Ensures validation happens immediately
+          >
+            <Checkbox
+              onChange={() => {
+                form.validateFields([fullName]); // ✅ Fix validation trigger
+                console.log("Checkbox clicked");
+              }}
+            >
+              Accept Terms
+            </Checkbox>
+          </Form.Item>
+
+          // <Form.Item
+          //   valuePropName="checked"
+          //   label={labelStyle(label)}
+          //   name={name}
+          //   rules={[{ required: true, message: "You must accept the terms!" }]}
+          //   validateTrigger="onBlur"
+          // >
+          //   <Checkbox />
+          // </Form.Item>
+
+          // <Form.Item
+          //   name={name}
+          //   valuePropName="checked"
+          //   rules={[{ required: true, message: "You must accept the terms!" }]}
+          //   help={
+          //     <span className="text-red-500 text-sm">
+          //       {form.getFieldError(name)?.[0]}
+          //     </span>
+          //   }
+          //   validateStatus={form.getFieldError(name)?.length ? "error" : ""}
+          // >
+          //   <div className="h-full flex-col bg-black justify-center">
+          //     {" "}
+          //     <Checkbox>
+          //       <span className="text-green-600 font-semibold">
+          //         Accept Terms <span className="text-red-500">*</span>
+          //       </span>
+          //     </Checkbox>
+          //     {rules?.[0]?.required && <span className="text-red-500"></span>}
+          //   </div>
+          // </Form.Item>
+        );
+      case "radio":
+        return (
+          <Form.Item
+            key={name}
+            label={labelStyle(label)}
+            name={fullName}
+            rules={rules}
+          >
+            <Radio.Group>
+              {options?.map((opt) => (
+                <Radio
+                  key={opt.value}
+                  value={opt.value}
+                  className="custom-radio"
+                >
+                  {opt.label}
+                </Radio>
+              ))}
+            </Radio.Group>
+          </Form.Item>
+        );
+
       case "select":
         return (
           <Form.Item
@@ -140,7 +236,7 @@ const DynamicForm = ({
               placeholder="Select Date"
               showToday={false}
               format="YYYY-MM-DD"
-              renderExtraFooter={() => null} // Fix for deprecation
+              //  renderExtraFooter={() => null} // Fix for deprecation
               suffixIcon={<CalendarOutlined style={{ color: "orange" }} />} // ✅ Add green calendar icon
             />
           </Form.Item>
@@ -213,7 +309,7 @@ const DynamicForm = ({
         {/* Scrollable content wrapper */}
         <Scrollbars
           className="flex justify-center"
-          style={{ height: `calc(60vh - 150px)` }}
+          style={{ height: `calc(90vh - 150px)` }}
           autoHide
           autoHideTimeout={500}
           autoHideDuration={200}
@@ -233,7 +329,6 @@ const DynamicForm = ({
           renderTrackHorizontal={() => <div style={{ display: "none" }} />}
         >
           <div className="w-[95%]">
-            {" "}
             <Form
               form={form}
               layout="vertical"
@@ -271,6 +366,7 @@ const DynamicForm = ({
                     {children}
                   </span>
                 </Form.Item>
+                <div className="m-2">{childrenArray[0]}</div>
               </div>
             </Form>
           </div>

@@ -198,7 +198,7 @@ makes                                                  email and label justify  
 
   outline: none !important;
 }
-.ant-form-item-control-input:hover {
+.omg:hover .ant-form-item-control-input:hover {
   box-shadow: 0px 0px 10px #4ade80; /* Green glow effect */
 
   border-color: rgb(23, 240, 88) !important; /* Border on hover */
@@ -263,4 +263,17 @@ makes                                                  email and label justify  
 .ant-picker-header-view button:focus {
   outline: none !important;
   box-shadow: 0 0 5px rgba(59, 130, 246, 0.8) !important; /* Glowing blue focus */
+}
+/*                                                                  */
+.custom-radio .ant-radio-inner {
+  border-color: green !important; /* Default border color */
+}
+
+.custom-radio .ant-radio-checked .ant-radio-inner {
+  background-color: rgb(16, 232, 59) !important; /* Fill when selected */
+  border-color: rgb(5, 253, 9) !important;
+}
+
+.custom-radio .ant-radio:hover .ant-radio-inner {
+  border-color: #16a34a !important; /* Lighter green on hover */
 }

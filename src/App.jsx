@@ -86,6 +86,7 @@ import CombinedForm from "./components/antcom/formant/formant";
 import DynamicTable from "./components/antcom/anttable/anttaable";
 import FormAntParent from "./components/antcom/formant/formantparent";
 import AntTableParent2 from "./components/antcom/anttable/parent2ant";
+import Tailwindparent from "./tailwindcss/tailwing parent/parent";
 
 function App() {
   const [internetConnection, setInternetConnection] = useState(false);
@@ -113,7 +114,7 @@ function App() {
   return (
     <>
       <Toothpick4></Toothpick4>
-      <PdfParent></PdfParent>
+      {/* <PdfParent></PdfParent> */}
       {/*
       <Tooltip5></Tooltip5> */}
       {/* 
@@ -121,18 +122,16 @@ function App() {
       <FormAntParent></FormAntParent>
       {/* <SampleTable></SampleTable> */}
       {/* <DynamicTable></DynamicTable> */}
-
-      <AntTableParent2></AntTableParent2>
+      {/* <AntTableParent2></AntTableParent2>
       <Glass></Glass>
-      <Parentdateclear></Parentdateclear>
-
+      <Parentdateclear></Parentdateclear> */}
       {/* <Datecros></Datecros> */}
       <div className="flex flex-col justify-center  items-center gap-10 ">
         {/* <Apptable></Apptable> */}
         <TextToSpeech></TextToSpeech>
         {/* <UserForm></UserForm> */}
         {/* <CustomModal></CustomModal> */}
-        <Grid></Grid>
+        {/* <Grid></Grid>
         <BasicDrawer></BasicDrawer>
         <CustomModalWrapper
           variant="confirm"
@@ -148,7 +147,7 @@ function App() {
         ></CustomModalWrapper>
         <CustomModalWrapper variant="loading"></CustomModalWrapper>
         {/* <Parentform></Parentform> */}
-        <ParentForm2></ParentForm2>
+        {/* <ParentForm2></ParentForm2> */}
         {/*
         <DataDisplayComponent></DataDisplayComponent> */}
         <ThemeProvider>
@@ -199,6 +198,15 @@ function App() {
                   <>
                     {" "}
                     <LoggerComponent />
+                  </>
+                }
+              />
+              <Route
+                path="/tail"
+                element={
+                  <>
+                    {" "}
+                    <Tailwindparent />
                   </>
                 }
               />

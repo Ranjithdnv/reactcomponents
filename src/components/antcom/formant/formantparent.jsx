@@ -124,6 +124,30 @@ const formSchema = [
     ],
   },
   {
+    label: "Accept Terms",
+    name: "terms",
+    type: "checkbox",
+    rules: [
+      { required: true, message: "You must accept the terms!" },
+      {
+        validator: (_, value) =>
+          value
+            ? Promise.resolve()
+            : Promise.reject(new Error("You must accept the terms!")),
+      },
+    ],
+  },
+  {
+    label: "Select Gender",
+    name: "gender",
+    type: "radio",
+    options: [
+      { label: "Male", value: "male" },
+      { label: "Female", value: "female" },
+    ],
+    rules: [{ required: true, message: "Please select gender" }],
+  },
+  {
     label: "Email Address",
     name: "email",
     type: "email",
@@ -185,7 +209,7 @@ const formSchema = [
     name: "dob",
     type: "date",
     rules: [
-      { required: true, message: "Date of Birth is required" },
+      // { required: true, message: "Date of Birth is required" },
       ({ getFieldValue }) => ({
         validator(_, value) {
           if (!value)
@@ -257,6 +281,7 @@ const initialData = {
   email: "johndoe@example.com",
   role: "user",
   skills: ["React", "Node.js"],
+  //gender: none,
 };
 
 const FormAntParent = () => {
@@ -275,9 +300,8 @@ const FormAntParent = () => {
         initialValues={initialData}
         ClassNameForInput={ClassNameForInput}
       >
-        {" "}
         <button
-          className="bg-transparent"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-[0_4px_10px_rgba(0,0,255,0.5)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,255,0.7)] focus:outline-none active:shadow-[0_0_1px_rgba(0,0,255,0.7)]"
           onClick={(e) => {
             e.preventDefault();
             console.log("Children button clicked!", e);
@@ -286,16 +310,7 @@ const FormAntParent = () => {
           children
         </button>{" "}
         <button
-          className="bg-transparent"
-          onClick={(e) => {
-            e.preventDefault();
-            console.log("Children button clicked!", e);
-          }}
-        >
-          children
-        </button>{" "}
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-[0_10px_30px_rgba(0,0,255,0.5)] transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,255,0.7) focus:outline-none  active:shadow-shadow-[0_0_1px_rgba(0,0,255,0.7)]"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-[0_4px_10px_rgba(0,0,255,0.5)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,255,0.7)] focus:outline-none active:shadow-[0_0_1px_rgba(0,0,255,0.7)]"
           onClick={(e) => {
             e.preventDefault();
             console.log("Children button clicked!", e);
@@ -304,14 +319,24 @@ const FormAntParent = () => {
           children
         </button>
         <button
-          className="bg-transparent"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-[0_4px_10px_rgba(0,0,255,0.5)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,255,0.7)] focus:outline-none active:shadow-[0_0_1px_rgba(0,0,255,0.7)]"
           onClick={(e) => {
             e.preventDefault();
             console.log("Children button clicked!", e);
             setOpenFormModal(false);
           }}
         >
-          children4
+          children
+        </button>{" "}
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-[0_4px_10px_rgba(0,0,255,0.5)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,255,0.7)] focus:outline-none active:shadow-[0_0_1px_rgba(0,0,255,0.7)]"
+          onClick={(e) => {
+            e.preventDefault();
+            console.log("Children button clicked!", e);
+            setOpenFormModal(false);
+          }}
+        >
+          children
         </button>
       </DynamicForm>
       <button className="bg-black " onClick={() => setOpenFormModal(true)}>
