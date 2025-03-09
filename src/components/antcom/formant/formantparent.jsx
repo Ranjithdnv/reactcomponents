@@ -128,7 +128,7 @@ const formSchema = [
     name: "terms",
     type: "checkbox",
     rules: [
-      { required: true, message: "You must accept the terms!" },
+      { required: true, message: "" },
       {
         validator: (_, value) =>
           value

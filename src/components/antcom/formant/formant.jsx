@@ -120,15 +120,7 @@ const DynamicForm = ({
             label={labelStyle(label)}
             name={fullName} // ✅ Ensure this matches your form structure
             valuePropName="checked"
-            rules={[
-              ...(rules || []),
-              // {
-              //   validator: (_, value) =>
-              //     value
-              //       ? Promise.resolve()
-              //       : Promise.reject(new Error("You must accept the terms!")),
-              // },
-            ]}
+            rules={[...(rules || [])]}
             validateTrigger="onChange" // ✅ Ensures validation happens immediately
           >
             <Checkbox
@@ -136,9 +128,7 @@ const DynamicForm = ({
                 // form.validateFields([fullName]); // ✅ Fix validation trigger
                 console.log("Checkbox clicked");
               }}
-            >
-              Accept Terms
-            </Checkbox>
+            ></Checkbox>
           </Form.Item>
 
           // <Form.Item
