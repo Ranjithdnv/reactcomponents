@@ -133,7 +133,7 @@ const DynamicForm = ({
           >
             <Checkbox
               onChange={() => {
-                form.validateFields([fullName]); // ✅ Fix validation trigger
+                // form.validateFields([fullName]); // ✅ Fix validation trigger
                 console.log("Checkbox clicked");
               }}
             >
