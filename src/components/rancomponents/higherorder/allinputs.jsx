@@ -20,7 +20,7 @@ const UnifiedComponent = ({
   placeholder,
   type2,
   itemsClassname,
-  xIconClassname,
+  xIconClassname = "",
   value,
   onChange,
   options = [],
@@ -34,7 +34,7 @@ const UnifiedComponent = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder || "Select an option"}
-        style={{ width: props.width || 250 }}
+        //   style={{ width: props.width || 250 }}
         maxTagCount={props.maxTagCount || 4}
         showSearch
         tagRender={({ label, closable, onClose }) => (
@@ -45,9 +45,9 @@ const UnifiedComponent = ({
         suffixIcon={
           value?.length > 0 && (
             <CloseCircleOutlined
-              className={xIconClassname}
+              className={`transition-transform duration-300 ease-in-out hover:rotate-180 ${xIconClassname}`}
               onClick={() => onChange([])}
-              style={{ fontSize: 16, cursor: "pointer" }}
+              style={{ fontSize: 18, color: "red", cursor: "pointer" }}
             />
           )
         }
@@ -87,15 +87,20 @@ const UnifiedComponent = ({
           placeholder={placeholder || "Enter text..."}
           value={inputValue}
           onChange={handleChange}
-          style={{ width: props.width || 250 }}
+          // style={{ width: props.width || 250 }}
           suffix={
             <span>
               {" "}
               {inputValue && (
                 <CloseCircleOutlined
-                  className="!text-blue-500 !text-base"
+                  className="!text-red-500 transition-transform duration-300 ease-in-out hover:rotate-180 !text-base"
                   onClick={() => handleChange("")}
-                  style={{ fontSize: 18, color: "red", cursor: "pointer" }}
+                  style={{
+                    fontSize: 18,
+                    color: "red",
+                    cursor: "pointer",
+                    opacity: 0.99,
+                  }}
                 />
               )}{" "}
             </span>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import DynamicForm from "./formant";
 
-const formSchema1 = [
+const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
+
+const formSchema1 = shuffleArray([
   {
     label: "Full Name",
     name: "fullName",
@@ -36,36 +38,6 @@ const formSchema1 = [
       }),
     ],
   },
-  {
-    label: "Role",
-    name: "role",
-    type: "select",
-    options: [
-      { label: "Admin", value: "admin" },
-      { label: "User", value: "user" },
-      { label: "Guest", value: "guest" },
-    ],
-  },
-  {
-    label: "Role",
-    name: "role",
-    type: "select",
-    options: [
-      { label: "Admin", value: "admin" },
-      { label: "User", value: "user" },
-      { label: "Guest", value: "guest" },
-    ],
-  },
-  {
-    label: "Role",
-    name: "role",
-    type: "select",
-    options: [
-      { label: "Admin", value: "admin" },
-      { label: "User", value: "user" },
-      { label: "Guest", value: "guest" },
-    ],
-  },
   { label: "Birthdate", name: "dob", type: "date" },
   { label: "Skills", name: "skills", type: "list" },
   {
@@ -81,8 +53,10 @@ const formSchema1 = [
       { label: "Guest", value: "guest" },
     ],
   },
-];
+]);
+
 const formSchema = [
+  // Personal Information
   {
     label: "First Name",
     name: "firstName",
@@ -96,7 +70,6 @@ const formSchema = [
       },
     ],
   },
-
   {
     label: "Last Name",
     name: "lastName",
@@ -111,42 +84,43 @@ const formSchema = [
     ],
   },
   {
-    label: "password",
-    name: "password",
-    type: "password",
+    label: "Date of Birth",
+    name: "dob",
+    type: "date",
     rules: [
-      { required: true, message: "Last Name is required" },
-      {
-        min: 2,
-        max: 30,
-        message: "Last Name must be between 2 and 30 characters",
-      },
-    ],
-  },
-  {
-    label: "Accept Terms",
-    name: "terms",
-    type: "checkbox",
-    rules: [
-      { required: true, message: "" },
-      {
-        validator: (_, value) =>
-          value
+      ({ getFieldValue }) => ({
+        validator(_, value) {
+          if (!value)
+            return Promise.reject(new Error("Date of Birth is required"));
+          const today = new Date();
+          const birthDate = new Date(value);
+          const age = today.getFullYear() - birthDate.getFullYear();
+          return age >= 18
             ? Promise.resolve()
-            : Promise.reject(new Error("You must accept the terms!")),
-      },
+            : Promise.reject(new Error("You must be at least 18 years old"));
+        },
+      }),
     ],
   },
   {
-    label: "Select Gender",
+    label: "Gender",
     name: "gender",
-    type: "radio",
+    type: "select",
     options: [
       { label: "Male", value: "male" },
       { label: "Female", value: "female" },
+      { label: "Other", value: "other" },
     ],
-    rules: [{ required: true, message: "Please select gender" }],
+    rules: [{ required: true, message: "Gender is required" }],
   },
+  {
+    label: "Password",
+    name: "password",
+    type: "password",
+    rules: [{ required: true, message: "Password is required" }],
+  },
+
+  // Contact Information
   {
     label: "Email Address",
     name: "email",
@@ -170,12 +144,6 @@ const formSchema = [
         message: "Enter a valid 10-digit phone number",
       },
     ],
-  },
-  {
-    label: "Address",
-    name: "address",
-    type: "text",
-    rules: [{ required: true, message: "Address is required" }],
   },
   {
     label: "City",
@@ -204,47 +172,8 @@ const formSchema = [
       { pattern: /^[0-9]{5}$/, message: "Enter a valid 5-digit zip code" },
     ],
   },
-  {
-    label: "Date of Birth",
-    name: "dob",
-    type: "date",
-    rules: [
-      // { required: true, message: "Date of Birth is required" },
-      ({ getFieldValue }) => ({
-        validator(_, value) {
-          if (!value)
-            return Promise.reject(new Error("Date of Birth is required"));
-          const today = new Date();
-          const birthDate = new Date(value);
-          const age = today.getFullYear() - birthDate.getFullYear();
-          if (age >= 18) return Promise.resolve();
-          return Promise.reject(new Error("You must be at least 18 years old"));
-        },
-      }),
-    ],
-  },
-  {
-    label: "Gender",
-    name: "gender",
-    type: "select",
-    options: [
-      { label: "Male", value: "male" },
-      { label: "Female", value: "female" },
-      { label: "Other", value: "other" },
-    ],
-    rules: [{ required: true, message: "Gender is required" }],
-  },
-  {
-    label: "Marital Status",
-    name: "maritalStatus",
-    type: "select",
-    options: [
-      { label: "Single", value: "single" },
-      { label: "Married", value: "married" },
-      { label: "Divorced", value: "divorced" },
-      { label: "Widowed", value: "widowed" },
-    ],
-  },
+
+  // Additional Information
   {
     label: "Employment Status",
     name: "employmentStatus",
@@ -274,7 +203,26 @@ const formSchema = [
       { required: true, message: "Preferred contact method is required" },
     ],
   },
+
+  // Agreement
+  {
+    label: "Accept Terms",
+    name: "terms",
+    type: "checkbox",
+    rules: [
+      { required: true, message: "" },
+      {
+        validator: (_, value) =>
+          value
+            ? Promise.resolve()
+            : Promise.reject(new Error("You must accept the terms!")),
+      },
+    ],
+  },
 ];
+
+console.log(formSchema1);
+console.log(formSchema);
 
 const initialData = {
   fullName: "John Doe",
@@ -293,7 +241,7 @@ const FormAntParent = () => {
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Dynamic Form Example</h2>
       <DynamicForm
-        ClassNameFromParent="grid grid-cols-3 gap-4"
+        ClassNameFromParent="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         fieldsSchema={formSchema}
         openFormModal={openFormModal}
         setOpenFormModal={setOpenFormModal}

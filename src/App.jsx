@@ -66,7 +66,7 @@ import ProfileDetails from "./dashpages/profile/profileprof";
 import ProfileSettings from "./dashpages/profile/profileset";
 import CounterComponent from "./pages/hooktest";
 import DataDisplayComponent from "./pages/hooktest";
-import Comp from "./pages/shancomponets/comp";
+
 import ParentForm2 from "./components/rancomponents/parentfoemfull";
 import RequireAuth from "./util/require";
 import Header from "./pages/header";
@@ -87,6 +87,9 @@ import DynamicTable from "./components/antcom/anttable/anttaable";
 import FormAntParent from "./components/antcom/formant/formantparent";
 import AntTableParent2 from "./components/antcom/anttable/parent2ant";
 import Tailwindparent from "./tailwindcss/tailwing parent/parent";
+import CompetitionForm from "./sass/sass";
+import FormAntParentV2 from "./components/antcom/formant/formantp2";
+import AnimatedParent from "./util/transition/anime";
 
 function App() {
   const [internetConnection, setInternetConnection] = useState(false);
@@ -113,13 +116,23 @@ function App() {
   console.log(internetConnection);
   return (
     <>
-      <Toothpick4></Toothpick4>
+      <CompetitionForm />
+      <Toothpick4></Toothpick4> <Checkant></Checkant>
       {/* <PdfParent></PdfParent> */}
       {/*
       <Tooltip5></Tooltip5> */}
-      {/* 
-      <Checkant></Checkant> */}
+      {/*
+       */}
+      <div className="w-64">
+        {" "}
+        <AnimatedParent anime="tilt" />
+      </div>
+      <AnimatedParent anime="bounce" />
+      <AnimatedParent anime="magnetic" />
+      <AnimatedParent anime="flip" />
+      <AnimatedParent anime="shake" /> <AnimatedParent anime="neon" />
       <FormAntParent></FormAntParent>
+      <FormAntParentV2></FormAntParentV2>
       {/* <SampleTable></SampleTable> */}
       {/* <DynamicTable></DynamicTable> */}
       {/* <AntTableParent2></AntTableParent2>
@@ -178,7 +191,7 @@ function App() {
                   <Route path="settings" element={<ProfileSettings />} />
                 </Route>
                 <Route path="settings" element={<Content />} />
-                <Route path="shanco" element={<Comp />} />
+
                 <Route path="form" element={<ParentForm2 />} />
               </Route>
               <Route

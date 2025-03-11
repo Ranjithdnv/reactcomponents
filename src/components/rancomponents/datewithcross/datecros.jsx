@@ -63,8 +63,8 @@ const CustomDatePicker = ({ value, onDateChange, handleDateUpdate2 }) => {
   return (
     <div className="relative flex text-center items-center p-2 w-full">
       <DatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
+        // selected={selectedDate}
+        //onChange={handleDateChange}
         isClearable
         placeholderText="Select a date"
         className="border border-gray-300 p-2 rounded-md w-full focus:outline-none shadow-md"
@@ -83,7 +83,7 @@ const CustomDatePicker = ({ value, onDateChange, handleDateUpdate2 }) => {
       {selectedDate && (
         <button
           className="absolute right-3 text-red-500 text-lg font-bold bg-transparent hover:text-red-700"
-          onClick={() => handleDateChange(null)}
+          //  onClick={() => handleDateChange(null)}
         >
           ❌
         </button>
