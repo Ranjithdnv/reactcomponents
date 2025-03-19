@@ -90,9 +90,20 @@ import Tailwindparent from "./tailwindcss/tailwing parent/parent";
 import CompetitionForm from "./sass/sass";
 import FormAntParentV2 from "./components/antcom/formant/formantp2";
 import AnimatedParent from "./util/transition/anime";
+import Loginsplax from "./sparkz/spark";
+import DashedSteps from "./sparkz/progress";
+import AnimatedDashedProgress from "./sparkz/progress";
+import InvertedBorderRadiusBar from "./sparkz/invertedborder";
+import AnimatedWave from "./sparkz/wave";
+import ImageGrid from "./sparkz/gridspark";
+import Sidebar from "./sparkz/sidebar";
+import VisaOffers from "./sparkz/screen2";
+import MasonryGrid from "./sparkz/mansory";
 
 function App() {
   const [internetConnection, setInternetConnection] = useState(false);
+
+  const [isExpanded, setIsExpanded] = useState(false);
   useEffect(() => {
     console.log(internetConnection);
     window.addEventListener("offline", function () {
@@ -115,24 +126,50 @@ function App() {
   ];
   console.log(internetConnection);
   return (
-    <>
-      <CompetitionForm />
-      <Toothpick4></Toothpick4> <Checkant></Checkant>
+    <div className="relative transition-all duration-500 ">
+      <Card8 />
+      <Card9 />
+      <Card10 />
+      <Card11 />
+      {/* <div
+        className={`fixed left-0 top-1/2  rounded-lg overflow-hidden bg-black  -translate-y-1/2 h-[40vh] transition-all duration-500 ${
+          isExpanded ? "min-w-[80px] max-h-[60vh]" : "min-w-[200px] h-[40vh]"
+        }`}
+      >
+        <div className="flex justify-start rounded-lg  bg-green-500 items-center h-full">
+          <div
+            className="   backdrop:bg-gray-500 flex items-center text-white font-bold cursor-pointer  p-4 
+          overflow-hidden break-words w-full h-full"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <div className="flex flex-col bg-white/20 backdrop-blur-lg shadow-lg border border-white/30 rounded-lg p-4">
+              <div className="h-7 flex items-center w-7 bg-red-500 overflow-hidden">
+                hiiiiiiiiiiiiiiiiiiiiiiiii
+              </div>
+              <div className="h-7 w-7 bg-red-500 overflow-hidden">
+                hiiiiiiiiiiiiiiiiiiiiiiiii
+              </div>
+              <div className="h-7 w-7 bg-red-500"></div>
+              <div className="h-7 w-7 bg-red-500"></div>
+              <div className="h-7 w-7 bg-red-500"></div>
+            </div>
+          </div>
+        </div>
+      </div> */}
+      {/* <CompetitionForm />
+      <Toothpick4></Toothpick4> <Checkant></Checkant> */}
       {/* <PdfParent></PdfParent> */}
       {/*
       <Tooltip5></Tooltip5> */}
       {/*
        */}
-      <div className="w-64">
-        {" "}
-        <AnimatedParent anime="tilt" />
-      </div>
-      <AnimatedParent anime="bounce" />
+      <div className="w-64"> {/* <AnimatedParent anime="tilt" /> */}</div>
+      {/* <AnimatedParent anime="bounce" />
       <AnimatedParent anime="magnetic" />
       <AnimatedParent anime="flip" />
       <AnimatedParent anime="shake" /> <AnimatedParent anime="neon" />
       <FormAntParent></FormAntParent>
-      <FormAntParentV2></FormAntParentV2>
+      <FormAntParentV2></FormAntParentV2> */}
       {/* <SampleTable></SampleTable> */}
       {/* <DynamicTable></DynamicTable> */}
       {/* <AntTableParent2></AntTableParent2>
@@ -141,7 +178,7 @@ function App() {
       {/* <Datecros></Datecros> */}
       <div className="flex flex-col justify-center  items-center gap-10 ">
         {/* <Apptable></Apptable> */}
-        <TextToSpeech></TextToSpeech>
+        {/* <TextToSpeech></TextToSpeech> */}
         {/* <UserForm></UserForm> */}
         {/* <CustomModal></CustomModal> */}
         {/* <Grid></Grid>
@@ -172,10 +209,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <RequireAuth>
-                    {" "}
-                    <DashboardLayout />
-                  </RequireAuth>
+                  <RequireAuth> {/* <DashboardLayout /> */}</RequireAuth>
                 }
               >
                 <Route
@@ -202,9 +236,7 @@ function App() {
                   </>
                 }
               />
-
               {/* Public Routes */}
-
               <Route
                 path="/trace"
                 element={
@@ -222,7 +254,84 @@ function App() {
                     <Tailwindparent />
                   </>
                 }
-              />
+              />{" "}
+              <Route
+                path="/tails"
+                element={
+                  <>
+                    {" "}
+                    <Loginsplax />
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/s2"
+                element={
+                  <>
+                    {" "}
+                    <VisaOffers />
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/s3"
+                element={
+                  <>
+                    {" "}
+                    <MasonryGrid />
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/progress"
+                element={
+                  <>
+                    {" "}
+                    <AnimatedDashedProgress />
+                    {/* <DashedSteps /> */}
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/invert"
+                element={
+                  <>
+                    {" "}
+                    <InvertedBorderRadiusBar />
+                    {/* <DashedSteps /> */}
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/ImageGrid"
+                element={
+                  <>
+                    {" "}
+                    <ImageGrid />
+                    {/* <DashedSteps /> */}
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/wave"
+                element={
+                  <>
+                    {" "}
+                    <AnimatedWave />
+                    {/* <DashedSteps /> */}
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/side"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar />
+                    {/* <DashedSteps /> */}
+                  </>
+                }
+              />{" "}
               <Route
                 path="/login"
                 element={
@@ -238,7 +347,7 @@ function App() {
           <span className="w-fit flex">bg-green-400</span>
         </ScrollableTooltip>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -9,7 +9,78 @@
   /*                                                                       // opacity not work why                 */
   opacity: 40 !important;
 }
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
 
+.carousel {
+  display: flex;
+  gap: 10px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  width: 100px;
+  height: 100px;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: transform 0.5s ease-in-out;
+}
+.clip-path-custom {
+  clip-path: path("M0,0 Q50,50 0,100 L0,100 L0,0 Z");
+}
+.custom-top::after {
+  content: "";
+  position: absolute;
+  top: -39px;
+  right: 0px;
+  width: 50px;
+  height: 40px;
+  z-index: 100;
+  background-color: transparent; /* Initially transparent */
+  border-radius: 50%;
+  /* Smooth transition */
+}
+
+.custom-top2::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  /* left: -10px; */
+  width: 0px;
+  border-radius: 0px;
+  background-color: transparent;
+  transition: all 1s ease-in-out;
+  height: 60px;
+  /* Initially transparent */
+  /* Smooth transition */
+}
+
+.custom-top:hover::after {
+  overflow: hidden;
+  z-index: 200;
+  /* Change to green on hover */
+}
+
+.custom-top2:hover::before {
+  z-index: -200;
+  left: 0px;
+  top: -10px;
+  width: 20px;
+  background-color: rgb(10, 126, 208); /* Change to blue on hover */
+}
+
+.active {
+  transform: scale(1.5);
+}
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgb(50, 209, 6) !important;
   border-radius: 8px;

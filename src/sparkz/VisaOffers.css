@@ -1,0 +1,83 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.visa-container {
+  padding: 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.search-box {
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-box button {
+  padding: 10px 15px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.visa-flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.visa-box {
+  width: 30%;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.visa-box img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.visa-box button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.review-box {
+  background: white;
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.stars {
+  width: 100px;
+}
+
+.two-column {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.two-column img {
+  width: 50%;
+  border-radius: 5px;
+} */

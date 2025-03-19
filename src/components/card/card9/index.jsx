@@ -2,7 +2,7 @@ import React from "react";
 import "./indexcard9.css";
 const Card6 = () => {
   return (
-    <div>
+    <div className="">
       <div class="e-card playing">
         <div class="image"></div>
 
@@ -11,7 +11,10 @@ const Card6 = () => {
         <div class="wave">ff</div>
         <div>Ranjith moka</div>
         <div class="infotop">
-          <div>Ranjith moka</div> <br /> <div>Ranjith moka</div>
+          <div>
+            Ranjith mokaRanjith moknjith mokaRanjith moknjith mokaRanjith moka
+          </div>{" "}
+          <br /> <div>Ranjith moka</div>
           <br />
           UI / EX Designer
           <br />
