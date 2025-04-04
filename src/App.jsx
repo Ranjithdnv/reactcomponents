@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import ButtonLighting from "./components/button/buttonlighting";
 import Card1 from "./components/card/card1";
@@ -99,19 +99,84 @@ import ImageGrid from "./sparkz/gridspark";
 import Sidebar from "./sparkz/sidebar";
 import VisaOffers from "./sparkz/screen2";
 import MasonryGrid from "./sparkz/mansory";
+import CoverflowSlider from "./sparkz/youtubeswiper/slidermiddlebig";
+import TwoColorCircularProgressBar from "./sparkz/progressspark";
+import MyResponsiveForm from "./antgutter/antgutter";
+import NestedFormList from "./antformlist/listsssss";
 
 function App() {
+  const [progress, setProgress] = useState(50);
   const [internetConnection, setInternetConnection] = useState(false);
+  const [translateX, setTranslateX] = useState(0);
+  const [direction, setDirection] = useState(1); // Direction can be -1 or +1 to alternate
+  const [isExpanded, setIsExpanded] = useState(false); // To track if the item is expanded or collapsed
+  const [scrollTriggered, setScrollTriggered] = useState(false); // Track if scroll event has triggered
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const divRef = useRef(null);
+
+  // Function to handle the translation on click (expand or collapse)
+  const handleTranslate = () => {
+    if (isExpanded) {
+      // Collapse
+      setTranslateX((prevTranslateX) => prevTranslateX - 30);
+    } else {
+      // Expand
+      setTranslateX((prevTranslateX) => prevTranslateX + 30);
+    }
+    setIsExpanded((prev) => !prev); // Toggle between expanded and collapsed
+  };
+
+  // Log the coordinates of the element
+  const logCoordinates = () => {
+    if (divRef.current) {
+      const rect = divRef.current.getBoundingClientRect();
+      console.log("Element Coordinates:", rect);
+      console.log("Top:", rect.top, "Left:", rect.left);
+      console.log("Width:", rect.width, "Height:", rect.height);
+    }
+  };
+
+  // Effect to log the coordinates whenever translateX changes
   useEffect(() => {
-    console.log(internetConnection);
+    logCoordinates();
+  }, [translateX]);
+
+  // Scroll event handler (collapse only once when scrolling)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isExpanded && !scrollTriggered && window.scrollY >= 200) {
+        console.log("Scrolled 200px or more! Collapsing...");
+
+        // Collapse the element when scrolling (only once)
+        setTranslateX((prevTranslateX) => prevTranslateX - 30); // Moves the element by -30px on scroll
+
+        // Set scrollTriggered to true to ensure the event only runs once
+        setScrollTriggered(true);
+      }
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup by removing the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollTriggered, isExpanded]); // Dependency array to track changes in scrollTriggered and isExpanded
+
+  // Effect for internet connection status
+  useEffect(() => {
     window.addEventListener("offline", function () {
       setInternetConnection(true);
     });
     window.addEventListener("online", function () {
       setInternetConnection(false);
     });
+
+    return () => {
+      window.removeEventListener("offline", () => {});
+      window.removeEventListener("online", () => {});
+    };
   }, []);
 
   const itemList = [
@@ -124,13 +189,72 @@ function App() {
     "Item 7",
     "Item 8",
   ];
+
   console.log(internetConnection);
   return (
     <div className="relative transition-all duration-500 ">
+      <MyResponsiveForm /> <NestedFormList />
+      <TwoColorCircularProgressBar
+        foregroundColor="black"
+        backgroundColor="red"
+        size={120}
+        speed={50}
+        maxProgress={85}
+      />{" "}
+      <TwoColorCircularProgressBar
+        foregroundColor="black"
+        backgroundColor="yellow"
+        size={120}
+        speed={50}
+        maxProgress={progress}
+      />
+      <AntTableParent2></AntTableParent2>
+      <button
+        onClick={() => setProgress((prev) => (prev >= 100 ? 50 : prev + 10))}
+        className="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Increase Progress
+      </button>
+      <AnimatedDashedProgress />
       <Card8 />
       <Card9 />
       <Card10 />
       <Card11 />
+      <div className="flex flex-col justify-center items-center h-screen space-y-4">
+        {/* Pass the progress state */}
+
+        {/* Button to Update Progress */}
+      </div>
+      <div className="relative my-10 ">
+        <div className="fixed top-1/2 left-0  -translate-y-1/2 transform transition-all duration-1000 ease-out">
+          <div
+            ref={divRef}
+            onClick={handleTranslate}
+            style={{ transform: `translateX(${translateX}px)` }}
+            className="flex flex-col items-center justify-center relative"
+          >
+            <div className="rounded-full bg-purple-400 py-4 pr-2 relative">
+              <div className="bg-white w-10 h-[41px] rounded-full absolute -top-10 right-0"></div>
+              <div className="bg-white w-10 h-[41px] rounded-full absolute -bottom-10 right-0"></div>
+
+              {/* Red circles */}
+              <div className=" border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+              <div className="border-2 w-8 h-8"></div>
+            </div>
+
+            {/* Pseudo-elements (using absolute positioning) */}
+            <div className="absolute -z-10 bg-purple-400 w-6 h-12 -top-5 left-0"></div>
+            <div className="absolute -z-10 bg-purple-400 w-6 h-12 -bottom-5 left-0"></div>
+          </div>
+        </div>
+      </div>
       {/* <div
         className={`fixed left-0 top-1/2  rounded-lg overflow-hidden bg-black  -translate-y-1/2 h-[40vh] transition-all duration-500 ${
           isExpanded ? "min-w-[80px] max-h-[60vh]" : "min-w-[200px] h-[40vh]"
@@ -201,7 +325,7 @@ function App() {
         {/*
         <DataDisplayComponent></DataDisplayComponent> */}
         <ThemeProvider>
-          <NoInternet connectionStatus={internetConnection} />
+          {/* <NoInternet connectionStatus={internetConnection} /> */}
           <Router>
             <ScrollToTop />
             <Routes>
@@ -279,6 +403,15 @@ function App() {
                   <>
                     {" "}
                     <MasonryGrid />
+                  </>
+                }
+              />{" "}
+              <Route
+                path="/ytbeslide"
+                element={
+                  <>
+                    {" "}
+                    <CoverflowSlider />
                   </>
                 }
               />{" "}

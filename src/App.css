@@ -187,7 +187,7 @@
   border-color: transparent !important;
 }
 
-/* ======================== ANT SELECT ======================== */
+/* ======================== ANT SELECT ========================   0 px border for select when using diff border-radius */
 .custom-select .ant-select-selector {
   border: 1px solid orange !important;
   border-radius: 6px;
