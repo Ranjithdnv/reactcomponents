@@ -102,17 +102,18 @@ const ParentComponent = () => {
         listName="surgeries"
         onSubmit={handleSubmit} // Pass submit handler
       />
-      <div
-      //className=" max-w-4xl"
-      >
+      <div className=" flex w-full justify-center ">
         {" "}
-        <ReusableFormList
-          form={form} //
-          formFields={formFields2}
-          optionsData={optionsData}
-          listName="surgeries2"
-          onSubmit={handleSubmit} // Pass submit handler
-        />
+        <div className="w-full ">
+          {" "}
+          <ReusableFormList
+            form={form} //
+            formFields={formFields2}
+            optionsData={optionsData}
+            listName="surgeries2"
+            onSubmit={handleSubmit} // Pass submit handler
+          />
+        </div>
       </div>
       <Form
         form={form}

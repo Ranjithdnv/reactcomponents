@@ -17,6 +17,21 @@
   margin: auto;
   position: relative;
 }
+/* styles.css or your CSS file */
+.custom-rounded .ant-select-selector {
+  border-radius: 999px !important;
+  width: 100% !important;
+  /* border: none !important; */
+}
+.custom-rounded {
+  border-radius: 999px !important;
+  width: 100% !important;
+  overflow: hidden;
+  /* border: 1px solid orange !important; */
+}
+/* .custom-rounded .ant-select-selector :hover {
+  border: 1px solid greenyellow !important;
+} */
 
 .carousel {
   display: flex;

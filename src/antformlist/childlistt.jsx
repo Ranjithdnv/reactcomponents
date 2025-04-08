@@ -179,7 +179,7 @@
 
 //                       {field.type === "date" && (
 //                         <DatePicker
-//                           style={{ width: "100%" }}
+//                            style={{ borderRadius: "999px", width: "100%" }}
 //                           disabled={
 //                             field.dependsOn &&
 //                             !form.getFieldValue([
@@ -301,134 +301,148 @@ const ReusableFormList = ({
   };
 
   return (
-    <Form
-      form={form}
-      layout="vertical"
-      autoComplete="off"
-      initialValues={{ [listName]: [{}] }}
-      onFinish={handleFormSubmit}
-    >
-      <Form.List name={listName}>
-        {(fields, { add, remove }) => (
-          <div>
-            {fields.map(({ key, name, ...restField }) => (
-              <Row gutter={[24, 24]} key={key}>
-                {formFields.map((field) => (
-                  <Col
-                    xs={24}
-                    sm={field.sm || 6}
-                    //  sm={field.type === "input" ? 12 : 6} // Increase span if it's a select field
-                    key={field.name}
-                  >
-                    <Form.Item
-                      shouldUpdate={(prevValues, currentValues) =>
-                        prevValues !== currentValues
-                      }
-                      noStyle
+    <div className=" w-full  overflow-x-hidden">
+      {" "}
+      <Form
+        form={form}
+        style={{
+          overflowX: "hidden",
+          boxSizing: "border-box",
+        }}
+        layout="vertical"
+        autoComplete="off"
+        initialValues={{ [listName]: [{}] }}
+        onFinish={handleFormSubmit}
+      >
+        <Form.List name={listName}>
+          {(fields, { add, remove }) => (
+            <div>
+              {fields.map(({ key, name, ...restField }) => (
+                <Row gutter={[12, 16]} key={key}>
+                  {formFields.map((field) => (
+                    <Col
+                      xs={24}
+                      sm={field.sm || 6}
+                      //  sm={field.type === "input" ? 12 : 6} // Increase span if it's a select field
+                      key={field.name}
                     >
-                      {() => {
-                        const currentList = form.getFieldValue(listName) || [];
-                        const currentItem = currentList[name] || {};
+                      <Form.Item
+                        shouldUpdate={(prevValues, currentValues) =>
+                          prevValues !== currentValues
+                        }
+                        noStyle
+                      >
+                        {() => {
+                          const currentList =
+                            form.getFieldValue(listName) || [];
+                          const currentItem = currentList[name] || {};
 
-                        const isDisabled =
-                          field.dependsOn && !currentItem[field.dependsOn];
+                          const isDisabled =
+                            field.dependsOn && !currentItem[field.dependsOn];
 
-                        return (
-                          <Form.Item
-                            {...restField}
-                            name={[name, field.name]}
-                            label={field.label}
-                            rules={
-                              field.required
-                                ? [
-                                    {
-                                      required: true,
-                                      message: `Please enter ${field.label}`,
-                                    },
-                                  ]
-                                : []
-                            }
-                          >
-                            {field.type === "input" && (
-                              <Input
-                                placeholder={`Enter ${field.label}`}
-                                disabled={isDisabled}
-                              />
-                            )}
-                            {field.type === "number" && (
-                              <InputNumber
-                                style={{ width: "100%" }}
-                                placeholder={`Enter ${field.label}`}
-                                disabled={isDisabled}
-                              />
-                            )}
-                            {field.type === "select" && (
-                              <Select
-                                placeholder={`Select ${field.label}`}
-                                onChange={(value) =>
-                                  handleDependencyChange(
-                                    name,
-                                    field.name,
-                                    value
-                                  )
-                                }
-                                disabled={isDisabled}
-                              >
-                                {(
-                                  optionsData[field.name]?.(
-                                    currentItem[field.dependsOn]
-                                  ) || []
-                                ).map((option) => (
-                                  <Option
-                                    key={option.value}
-                                    value={option.value}
-                                  >
-                                    {option.label}
-                                  </Option>
-                                ))}
-                              </Select>
-                            )}
-                            {field.type === "date" && (
-                              <DatePicker
-                                style={{ width: "100%" }}
-                                disabled={isDisabled}
-                              />
-                            )}
-                          </Form.Item>
-                        );
-                      }}
-                    </Form.Item>
+                          return (
+                            <Form.Item
+                              {...restField}
+                              name={[name, field.name]}
+                              label={field.label}
+                              rules={
+                                field.required
+                                  ? [
+                                      {
+                                        required: true,
+                                        message: `Please enter ${field.label}`,
+                                      },
+                                    ]
+                                  : []
+                              }
+                            >
+                              {field.type === "input" && (
+                                <Input
+                                  className="custom-rounded"
+                                  placeholder={`Enter ${field.label}`}
+                                  disabled={isDisabled}
+                                />
+                              )}
+                              {field.type === "number" && (
+                                <InputNumber
+                                  className="custom-rounded"
+                                  placeholder={`Enter ${field.label}`}
+                                  disabled={isDisabled}
+                                />
+                              )}
+                              {field.type === "select" && (
+                                <Select
+                                  className="custom-rounded"
+                                  style={{
+                                    borderRadius: "999px",
+                                    width: "100%",
+                                  }}
+                                  placeholder={`Select ${field.label}`}
+                                  onChange={(value) =>
+                                    handleDependencyChange(
+                                      name,
+                                      field.name,
+                                      value
+                                    )
+                                  }
+                                  disabled={isDisabled}
+                                >
+                                  {(
+                                    optionsData[field.name]?.(
+                                      currentItem[field.dependsOn]
+                                    ) || []
+                                  ).map((option) => (
+                                    <Option
+                                      key={option.value}
+                                      value={option.value}
+                                    >
+                                      {option.label}
+                                    </Option>
+                                  ))}
+                                </Select>
+                              )}
+                              {field.type === "date" && (
+                                <DatePicker
+                                  className="custom-rounded"
+                                  disabled={isDisabled}
+                                />
+                              )}
+                            </Form.Item>
+                          );
+                        }}
+                      </Form.Item>
+                    </Col>
+                  ))}
+
+                  <Col xs={24} sm={1}>
+                    <div className=" flex h-full items-center">
+                      {" "}
+                      <MinusCircleOutlined
+                        style={{
+                          fontSize: "20px",
+                          color: "red",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => remove(name)}
+                      />
+                    </div>
                   </Col>
-                ))}
+                </Row>
+              ))}
 
-                <Col xs={24} sm={1}>
-                  <div className=" flex h-full items-center">
-                    {" "}
-                    <MinusCircleOutlined
-                      style={{
-                        fontSize: "20px",
-                        color: "red",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => remove(name)}
-                    />
-                  </div>
-                </Col>
-              </Row>
-            ))}
-
-            <Button
-              type="dashed"
-              onClick={() => validateAndAdd(add, fields, listName)}
-              icon={<PlusCircleOutlined />}
-              style={{ marginTop: "8px" }}
-            >
-              Add Entry
-            </Button>
-          </div>
-        )}
-      </Form.List>
-    </Form>
+              <Button
+                type="dashed"
+                onClick={() => validateAndAdd(add, fields, listName)}
+                icon={<PlusCircleOutlined />}
+                style={{ marginTop: "8px" }}
+              >
+                Add Entry
+              </Button>
+            </div>
+          )}
+        </Form.List>
+      </Form>
+    </div>
   );
 };
 

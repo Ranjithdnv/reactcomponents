@@ -103,6 +103,9 @@ import CoverflowSlider from "./sparkz/youtubeswiper/slidermiddlebig";
 import TwoColorCircularProgressBar from "./sparkz/progressspark";
 import MyResponsiveForm from "./antgutter/antgutter";
 import NestedFormList from "./antformlist/listsssss";
+import MarqueeText from "./wrapperanime/childcomos/homeanime";
+import Gridtablevisa from "./gridtablevisa/gridtablevisa";
+import ParentComponentGridTable from "./gridtablevisa/parentgridvisatable";
 
 function App() {
   const [progress, setProgress] = useState(50);
@@ -192,8 +195,17 @@ function App() {
 
   console.log(internetConnection);
   return (
-    <div className="relative transition-all duration-500 ">
-      <MyResponsiveForm /> <NestedFormList />
+    <div className="relative transition-all duration-500  ">
+      <ParentComponentGridTable />
+      <Grid></Grid>
+      <Gridtablevisa />
+      <MyResponsiveForm />
+      <NestedFormList />
+      <AnimatedParent anime="bounce" />
+      <AnimatedParent anime="magnetic" />
+      <AnimatedParent anime="flip" />
+      <AnimatedParent anime="shake" /> <AnimatedParent anime="neon" />
+      <MarqueeText />
       <TwoColorCircularProgressBar
         foregroundColor="black"
         backgroundColor="red"
@@ -288,10 +300,7 @@ function App() {
       {/*
        */}
       <div className="w-64"> {/* <AnimatedParent anime="tilt" /> */}</div>
-      {/* <AnimatedParent anime="bounce" />
-      <AnimatedParent anime="magnetic" />
-      <AnimatedParent anime="flip" />
-      <AnimatedParent anime="shake" /> <AnimatedParent anime="neon" />
+      {/*
       <FormAntParent></FormAntParent>
       <FormAntParentV2></FormAntParentV2> */}
       {/* <SampleTable></SampleTable> */}
@@ -305,7 +314,7 @@ function App() {
         {/* <TextToSpeech></TextToSpeech> */}
         {/* <UserForm></UserForm> */}
         {/* <CustomModal></CustomModal> */}
-        {/* <Grid></Grid>
+        {/*
         <BasicDrawer></BasicDrawer>
         <CustomModalWrapper
           variant="confirm"
