@@ -45,7 +45,7 @@ const Grid = () => {
       </div>
       all grids techniques
       <div>
-        <div
+        {/* <div
           className=""
           style={{
             display: "grid",
@@ -133,7 +133,7 @@ const Grid = () => {
           >
             Right
           </div>
-        </div>
+        </div> */}
       </div>
       <div
         style={{
