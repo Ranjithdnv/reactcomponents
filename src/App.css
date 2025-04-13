@@ -350,3 +350,10 @@
 .custom-datepicker:hover + .custom-clear-icon {
   display: flex;
   pointer-events: all; } */
+.text-mask {
+  background: linear-gradient(to right, green, red);
+  -webkit-mask-image: linear-gradient(to right, black, black);
+  -webkit-mask-clip: text;
+  -webkit-mask-composite: destination-in;
+  color: transparent;
+}

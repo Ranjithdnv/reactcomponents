@@ -106,6 +106,7 @@ import NestedFormList from "./antformlist/listsssss";
 import MarqueeText from "./wrapperanime/childcomos/homeanime";
 import Gridtablevisa from "./gridtablevisa/gridtablevisa";
 import ParentComponentGridTable from "./gridtablevisa/parentgridvisatable";
+import Card61 from "./wrapperanime/childcomos/d";
 
 function App() {
   const [progress, setProgress] = useState(50);
@@ -196,12 +197,23 @@ function App() {
   console.log(internetConnection);
   return (
     <div className="relative transition-all duration-500  ">
+      <AnimatedParent anime="flip">
+        {" "}
+        <AnimatedParent
+          anime="wave"
+          props={{ name: "Jane Doe", waveSpeeds: [5, 4, 3] }}
+        />
+      </AnimatedParent>
       <ParentComponentGridTable />
+      <Card61 />
       <Grid></Grid>
       <Gridtablevisa />
       <MyResponsiveForm />
       <NestedFormList />
-      <AnimatedParent anime="bounce" />
+      <div className=" fixed h-fit   bg-gradient-to-r  from-blue-500 to-red-500 bg-clip-text  top-0">
+        {" "}
+        <AnimatedParent anime="bounce" />
+      </div>
       <AnimatedParent anime="magnetic" />
       <AnimatedParent anime="flip" />
       <AnimatedParent anime="shake" /> <AnimatedParent anime="neon" />
@@ -241,15 +253,17 @@ function App() {
         <div className="fixed top-1/2 left-0  -translate-y-1/2 transform transition-all duration-1000 ease-out">
           <div
             ref={divRef}
-            onClick={handleTranslate}
-            style={{ transform: `translateX(${translateX}px)` }}
-            className="flex flex-col items-center justify-center relative"
+            //  onClick={handleTranslate}
+            //style={{ transform: `translateX(${translateX}px)` }}
+            className="flex flex-col items-center -translate-x-7 hover:translate-x-0 justify-center relative"
           >
             <div className="rounded-full bg-purple-400 py-4 pr-2 relative">
-              <div className="bg-white w-10 h-[41px] rounded-full absolute -top-10 right-0"></div>
+              <div
+                className="bg-gradient-to-tr from-[white_50%] to-transparent  w-10 h-[41px] rounded-full absolute -top-10 right-0"
+                style={{ clipPath: "inset(40% 0 0 0)" }}
+              ></div>
               <div className="bg-white w-10 h-[41px] rounded-full absolute -bottom-10 right-0"></div>
 
-              {/* Red circles */}
               <div className=" border-2 w-8 h-8"></div>
               <div className="border-2 w-8 h-8"></div>
               <div className="border-2 w-8 h-8"></div>
@@ -342,7 +356,16 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <RequireAuth> {/* <DashboardLayout /> */}</RequireAuth>
+                  <>
+                    {" "}
+                    <RequireAuth>
+                      {" "}
+                      <div className="mb-10 h-10">
+                        <DashboardLayout />
+                      </div>{" "}
+                    </RequireAuth>
+                    <div className="mb-20 h-24">jj</div>{" "}
+                  </>
                 }
               >
                 <Route

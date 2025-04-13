@@ -8,7 +8,7 @@ const DashboardLayout = () => {
 
   return (
     <div
-      className={`h-screen flex flex-col transition-colors duration-300 ${
+      className={`h-screenz flex flex-col transition-colors duration-300 ${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
       }`}
     >

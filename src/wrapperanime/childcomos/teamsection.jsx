@@ -6,6 +6,39 @@ const teamMembers = [
   { name: "Alice", role: "Frontend Developer" },
   { name: "Bob", role: "Backend Engineer" },
   { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
+  { name: "Alice", role: "Frontend Developer" },
+  { name: "Bob", role: "Backend Engineer" },
+  { name: "Charlie", role: "UI/UX Designer" },
 ];
 
 const TeamSection = () => {
@@ -20,9 +53,11 @@ const TeamSection = () => {
             <MotionItem key={index} animation="slideUp" delay={index * 0}>
               <h3 className="text-xl font-semibold mb-2">{member.name}</h3>{" "}
             </MotionItem>
-            <div className="bg-blue-300 rounded-xl shadow p-6 text-center">
-              <p className="text-gray-600">{member.role}</p>
-            </div>
+            <img
+              src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Colorful Flower"
+              className="w-full h-54 object-cover rounded-md mb-4"
+            />
           </MotionItem>
         ))}
       </div>
@@ -32,9 +67,11 @@ const TeamSection = () => {
             <MotionItem key={index} animation="slideUp" delay={index * 0}>
               <h3 className="text-xl font-semibold mb-2">{member.name}</h3>{" "}
             </MotionItem>
-            <div className="bg-blue-300 rounded-xl shadow p-6 text-center">
-              <p className="text-gray-600">{member.role}</p>
-            </div>
+            <img
+              src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Colorful Flower"
+              className="w-full h-54 object-cover rounded-md mb-4"
+            />
           </MotionItem>
         ))}
       </div>{" "}
@@ -46,9 +83,11 @@ const TeamSection = () => {
               <MotionItem key={index} animation="slideUp" delay={index * 0}>
                 <h3 className="text-xl font-semibold mb-2">{member.name}</h3>{" "}
               </MotionItem>
-              <div className="bg-blue-300 h-44 rounded-xl shadow p-6 text-center">
-                <p className="text-gray-600">{member.role}</p>
-              </div>
+              <img
+                src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Colorful Flower"
+                className="w-full h-54 object-cover rounded-md mb-4"
+              />
             </MotionItem>
           </div>
         ))}
@@ -61,9 +100,11 @@ const TeamSection = () => {
               <MotionItem key={index} animation="slideUp" delay={index * 0}>
                 <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
               </MotionItem>
-              <div className="bg-blue-300 h-44 rounded-xl shadow p-6 text-center">
-                <p className="text-gray-600">{member.role}</p>
-              </div>
+              <img
+                src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Colorful Flower"
+                className="w-full h-54 object-cover rounded-md mb-4"
+              />
             </MotionItem>
           </div>
         ))}
@@ -76,13 +117,33 @@ const TeamSection = () => {
               <MotionItem key={index} animation="slideUp" delay={index * 0}>
                 <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
               </MotionItem>
-              <div className="bg-blue-300 h-44 rounded-xl shadow p-6 text-center">
-                <p className="text-gray-600">{member.role}</p>
-              </div>
+              <img
+                src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Colorful Flower"
+                className="w-full h-54 object-cover rounded-md mb-4"
+              />
             </MotionItem>
           </div>
         ))}
-      </div>
+      </div>{" "}
+      <div className="grid grid-cols-1 mt-14 md:grid-cols-3 gap-8">
+        {teamMembers.map((member, index) => (
+          <div>
+            {" "}
+            <MotionItem key={index} animation="scaleIn" delay={index * 0.04}>
+              <MotionItem key={index} animation="slideUp" delay={index * 0}>
+                <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+              </MotionItem>
+              <img
+                src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Colorful Flower"
+                className="w-full h-54 object-cover rounded-md mb-4"
+              />
+              <p className="text-gray-600">{member.role}</p>
+            </MotionItem>
+          </div>
+        ))}
+      </div>{" "}
     </div>
   );
 };

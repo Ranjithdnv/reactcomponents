@@ -17,7 +17,12 @@ const MotionItem = ({
   const variants = {
     fadeInUp: {
       hidden: { opacity: 0, y: 40, x: 0 },
-      visible: { opacity: 1, y: 0, x: 100 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        x: 100,
+        transition: { duration: 1.5, ease: "easeInOut" },
+      },
     },
     fadeIn: {
       hidden: { opacity: 0 },
@@ -32,7 +37,7 @@ const MotionItem = ({
       visible: { opacity: 1, x: 0 },
     },
     scaleIn: {
-      hidden: { opacity: 0, scale: 0.95 },
+      hidden: { opacity: 0, scale: 0.8 },
       visible: { opacity: 1, scale: 1 },
     },
     slideUp: {
@@ -66,6 +71,7 @@ const MotionItem = ({
     rotateXY180: {
       hidden: {
         opacity: 0,
+        scale: 1,
         y: 0,
         rotateX: -180,
         rotateY: 180,
@@ -76,6 +82,7 @@ const MotionItem = ({
         y: 50,
         rotateX: 0,
         rotateY: 0,
+        scale: 1,
         transition: { duration: 1, ease: "easeOut" },
       },
     },
@@ -100,11 +107,12 @@ const MotionItem = ({
       },
     },
     hueRotate: {
-      hidden: { opacity: 0, filter: "hue-rotate(90deg)" },
+      hidden: { opacity: 0, scale: 0.8, filter: "hue-rotate(180deg)" },
       visible: {
         opacity: 1,
+        scale: 1,
         filter: "hue-rotate(0deg)",
-        transition: { duration: 0.8, ease: "easeInOut" },
+        transition: { duration: 1.5, ease: "easeInOut" },
       },
     },
     grayscaleIn: {

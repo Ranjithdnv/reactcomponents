@@ -2,15 +2,18 @@ import { motion } from "framer-motion";
 import { span } from "framer-motion/client";
 import { useState, useRef } from "react";
 
-export default function AnimatedParent({ anime = "bounce" }) {
+import AnimatedWavesCard from "./animewave";
+export default function AnimatedParent({ anime = "bounce", children }) {
   const animations = {
     bounce: <BouncingText text="Hello World" />,
     magnetic: <MagneticCard />,
-    flip: <RandomFlipCard />,
+    flip: <RandomFlipCard>{children} </RandomFlipCard>,
     shake: <ShakeCard />,
     neon: <NeonGlowCard />,
     stack: <StackedCards />,
     tilt: <TiltCard />,
+
+    wave: <AnimatedWavesCard />,
   };
 
   return (
@@ -98,7 +101,7 @@ function NeonGlowCard() {
 // Bouncing Text Component
 function BouncingText({ text }) {
   return (
-    <div className="flex space-x-1 text-4xl font-bold">
+    <div className="flex space-x-0  text-green-800  !w-fit  text-3xl font-bold">
       {text.split("").map((letter, index) => (
         <motion.span
           key={index}
@@ -114,7 +117,14 @@ function BouncingText({ text }) {
           {letter === " " ? (
             "\u00A0"
           ) : (
-            <span className=" text-orange-600">{letter}</span>
+            <span
+              className=" 
+          "
+
+              //bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent
+            >
+              {letter}
+            </span>
           )}
         </motion.span>
       ))}
@@ -143,7 +153,11 @@ function MagneticCard() {
   );
 }
 
-function RandomFlipCard({ axis = "y", flipOn = "hover" }) {
+function RandomFlipCard({
+  axis = "y",
+  flipOn = "hover",
+  children = { children },
+}) {
   const [flipped, setFlipped] = useState(false);
   const flipAxis = axis === "x" ? "rotateX" : "rotateY"; // Choose rotation axis
 
@@ -177,7 +191,7 @@ function RandomFlipCard({ axis = "y", flipOn = "hover" }) {
             transformOrigin: "center",
           }}
         >
-          Front Side
+          Front Side {children}
         </motion.div>
 
         {/* Back Side */}
