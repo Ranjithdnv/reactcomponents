@@ -204,10 +204,10 @@ function App() {
           props={{ name: "Jane Doe", waveSpeeds: [5, 4, 3] }}
         />
       </AnimatedParent>
-      <ParentComponentGridTable />
+      {/* <ParentComponentGridTable /> */}
       <Card61 />
       <Grid></Grid>
-      <Gridtablevisa />
+      {/* <Gridtablevisa /> */}
       <MyResponsiveForm />
       <NestedFormList />
       <div className=" fixed h-fit   bg-gradient-to-r  from-blue-500 to-red-500 bg-clip-text  top-0">
